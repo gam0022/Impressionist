@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Impressionist", "Impressionist\Impressionist.vcxproj", "{210DD3F3-E2D7-41CF-B623-382C7C072419}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{210DD3F3-E2D7-41CF-B623-382C7C072419}.Debug|Win32.ActiveCfg = Debug|Win32
+		{210DD3F3-E2D7-41CF-B623-382C7C072419}.Debug|Win32.Build.0 = Debug|Win32
+		{210DD3F3-E2D7-41CF-B623-382C7C072419}.Release|Win32.ActiveCfg = Release|Win32
+		{210DD3F3-E2D7-41CF-B623-382C7C072419}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
