@@ -46,22 +46,20 @@ void ScatteredCircleBrush::BrushMove( const Point source, const Point target )
 		return;
 	}
 
-	int size=pDoc->getSize();
+	int size    = pDoc->getSize();
+	int width   = pDoc->getWidth();
+	int angle   = pDoc->getAngle();
+	float alpha = pDoc->getAlpha() / 100.0;
 	int Ax,Ay;
-	//glPointSize(1.0);//点のサイズを１ピクセルにする
-	//glBegin( GL_POINTS );
-	//SetColor( source );
+
 	for(int i=0;i<10;i++){
 		Ax=target.x-size/2+rand()%size;
 		Ay=target.y-size/2+rand()%size;
-		//glVertex2i( Ax, Ay );
-
-		int size=pDoc->getSize();
-		int div=12;
-		float radius = 5;//size/2.0;
+		int div = 12;
+		float radius = width;
 		float Bx,By;
 		glBegin(GL_POLYGON);
-		SetColor( source );
+		SetColorAlpha( source, alpha );
 		for(int j=0;j<div;j++){
 			Bx = Ax + radius*cos(2*PI*j/div);
 			By = Ay + radius*sin(2*PI*j/div);
@@ -69,8 +67,6 @@ void ScatteredCircleBrush::BrushMove( const Point source, const Point target )
 		}
 		glEnd();
 	}
-	//glEnd();
-
 }
 
 void ScatteredCircleBrush::BrushEnd( const Point source, const Point target )

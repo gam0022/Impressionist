@@ -49,6 +49,7 @@ public:
 	//角度とα値のスライダー
 	Fl_Slider*			m_BrushAngleSlider;
 	Fl_Slider*			m_BrushWidthSlider;
+	Fl_Slider*			m_BrushAlphaSlider;
 
 
 	Fl_Button*          m_ClearCanvasButton;
@@ -66,12 +67,14 @@ public:
 	//実習
 	int					getAngle();
 	int					getWidth();
+	int					getAlpha();
 
 
 	void				setSize(int size);
 	//実習
 	void				setAngle(int angle);
 	void				setWidth(int width);
+	void				setAlpha(int alpha);
 
 	
 
@@ -93,6 +96,7 @@ private:
 	//実習
 	int		m_nAngle;
 	int		m_nWidth;
+	int		m_nAlpha;
 
 
 	// These attributes are set by the filter kernel UI
@@ -126,6 +130,7 @@ private:
 	//角度とα値コールバック
 	static void cb_angleSlides(Fl_Widget* o, void* v);
 	static void cb_widthSlides(Fl_Widget* o, void* v);
+	static void cb_alphaSlides(Fl_Widget* o, void* v);
 };
 
 #endif

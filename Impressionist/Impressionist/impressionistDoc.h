@@ -38,6 +38,7 @@ public:
 	//é¿èK
 	int		getAngle();
 	int		getWidth();
+	int		getAlpha();
 
 	// get the UI angle
 	void	setSize(int size);		// set the UI size

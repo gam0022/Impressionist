@@ -299,6 +299,13 @@ void ImpressionistUI::cb_widthSlides(Fl_Widget* o, void* v)
                 m_nWidth=int( ((Fl_Slider *)o)->value() ) ;
 }
 
+// UIから受け取った傾き値（Angle）を変数に格納
+void ImpressionistUI::cb_alphaSlides(Fl_Widget* o, void* v)
+{
+	((ImpressionistUI*)(o->user_data()))->
+                m_nAlpha=int( ((Fl_Slider *)o)->value() ) ;
+}
+
 
 //---------------------------------- per instance functions --------------------------------------
 
@@ -364,7 +371,10 @@ int ImpressionistUI::getWidth()
 //------------------------------------------------
 // Return the alpha value
 //------------------------------------------------
-
+int ImpressionistUI::getAlpha()
+{
+	return m_nAlpha;
+}
 
 
 //-------------------------------------------------
@@ -397,6 +407,13 @@ void ImpressionistUI::setWidth( int width )
 	m_BrushWidthSlider->value(m_nWidth);
 }
 
+void ImpressionistUI::setAlpha( int alpha )
+{
+	m_nAlpha=alpha;
+
+	if (alpha<=100) 
+	m_BrushAlphaSlider->value(m_nAlpha);
+}
 
 // Main menu definition
 Fl_Menu_Item ImpressionistUI::menuitems[] = {
@@ -536,6 +553,18 @@ ImpressionistUI::ImpressionistUI() {
 		m_BrushWidthSlider->callback(cb_widthSlides);
 
 		//α値スライダー
+		m_nAlpha=0;				// スライダー初期値
+		m_BrushAlphaSlider = new Fl_Value_Slider(10, 200, 300, 20, "Alpha");  // スライダー
+		m_BrushAlphaSlider->user_data((void*)(this));
+		m_BrushAlphaSlider->type(FL_HOR_NICE_SLIDER);
+		m_BrushAlphaSlider->labelfont(FL_COURIER);
+		m_BrushAlphaSlider->labelsize(12);
+		m_BrushAlphaSlider->minimum(0);		// スライダー最小値
+		m_BrushAlphaSlider->maximum(100);		// スライダー最大値
+		m_BrushAlphaSlider->step(1);
+		m_BrushAlphaSlider->value(m_nAlpha);	// スライダー値の格納場所
+		m_BrushAlphaSlider->align(FL_ALIGN_RIGHT);
+		m_BrushAlphaSlider->callback(cb_alphaSlides);
 
 
 		m_brushDialog->end();	
@@ -662,6 +691,3 @@ void ImpressionistUI::previewFilter(void)
 		fltKernel,FLT_WIDTH,FLT_HEIGHT,scale,offset);
 	m_paintView->refresh();
 }
-
-
-
