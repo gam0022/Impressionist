@@ -50,6 +50,8 @@ void LineBrush::BrushMove( const Point source, const Point target )
 	int size=pDoc->getSize();
 	int angle=pDoc->getAngle();	// 傾き（Angle）を取得
 	int width=pDoc->getWidth();	// haba（Width）を取得
+	float alpha = pDoc->getAlpha() / 100.0;
+
 	float Ax,Ay,Bx,By;
 	Ax=target.x+size*cos(PI*angle/180);
 	Ay=target.y+size*sin(PI*angle/180);
@@ -61,7 +63,7 @@ void LineBrush::BrushMove( const Point source, const Point target )
 	glEnable(GL_LINE_STIPPLE);
 
 	glBegin(GL_LINES);		// 線を描画
-		SetColor( source );
+		SetColorAlpha( source, alpha );
 		glVertex2f(Ax,Ay);
 		glVertex2f(Bx,By);
 	glEnd();

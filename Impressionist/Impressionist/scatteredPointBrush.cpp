@@ -45,10 +45,12 @@ void ScatteredPointBrush::BrushMove( const Point source, const Point target )
 	}
 
 	int size=pDoc->getSize();
+	float alpha = pDoc->getAlpha() / 100.0;
+
 	int Ax,Ay;
 	glPointSize(3.0);//点のサイズを１ピクセルにする
 	glBegin( GL_POINTS );
-	SetColor( source );
+	SetColorAlpha( source, alpha );
 	for(int i=0;i<10;i++){
 		Ax=target.x-size/2+rand()%size;
 		Ay=target.y-size/2+rand()%size;

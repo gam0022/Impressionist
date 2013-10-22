@@ -46,19 +46,15 @@ void CircleBrush::BrushMove( const Point source, const Point target )
 		return;
 	}
 
-	//SetColorAlpha( source, alpha );
-	//SetColor( source );
-	//glBegin( GL_POINTS );
-	//glVertex2d( target.x, target.y );
-	//glEnd();
-
 	int size=pDoc->getSize();
+	float alpha = pDoc->getAlpha() / 100.0;
+
 	int div=12;
 	float radius=size/2.0;
 	float Ax,Ay;
 	glBegin(GL_POLYGON);
-	SetColor( source );
-	for(int i=0;i<div;i++){
+	SetColorAlpha( source, alpha );
+	for(int i=0; i<div; i++){
 		Ax=target.x+radius*cos(2*PI*i/div);
 		Ay=target.y+radius*sin(2*PI*i/div);
 		glVertex2f(Ax,Ay);	 //floatŒ^‚Åˆø”Žw’è

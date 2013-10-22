@@ -445,6 +445,7 @@ Fl_Menu_Item ImpressionistUI::brushTypeMenu[NUM_BRUSH_TYPE+1] = {
   {"Lines",		FL_ALT+'l', (Fl_Callback *)ImpressionistUI::cb_brushChoice, (void *)BRUSH_LINES},
   {"ScateredPoints",		FL_ALT+'s', (Fl_Callback *)ImpressionistUI::cb_brushChoice, (void *)BRUSH_SCATTEREDPOINTS},
   {"ScateredCircles",		FL_ALT+'s', (Fl_Callback *)ImpressionistUI::cb_brushChoice, (void *)BRUSH_SCATTEREDCIRCLES},
+  {"Stars",		FL_ALT+'s', (Fl_Callback *)ImpressionistUI::cb_brushChoice, (void *)BRUSH_STARS},
   //ブラシ追加
   {0}
 };
@@ -539,7 +540,7 @@ ImpressionistUI::ImpressionistUI() {
 		m_BrushAngleSlider->callback(cb_angleSlides);
 
 		//Widthスライダー
-		m_nWidth=0;				// スライダー初期値
+		m_nWidth=5;				// スライダー初期値
 		m_BrushWidthSlider = new Fl_Value_Slider(10, 160, 300, 20, "Width");  // スライダー
 		m_BrushWidthSlider->user_data((void*)(this));
 		m_BrushWidthSlider->type(FL_HOR_NICE_SLIDER);
@@ -553,7 +554,7 @@ ImpressionistUI::ImpressionistUI() {
 		m_BrushWidthSlider->callback(cb_widthSlides);
 
 		//α値スライダー
-		m_nAlpha=0;				// スライダー初期値
+		m_nAlpha=80;				// スライダー初期値
 		m_BrushAlphaSlider = new Fl_Value_Slider(10, 200, 300, 20, "Alpha");  // スライダー
 		m_BrushAlphaSlider->user_data((void*)(this));
 		m_BrushAlphaSlider->type(FL_HOR_NICE_SLIDER);
