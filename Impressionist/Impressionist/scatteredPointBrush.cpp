@@ -46,7 +46,7 @@ void ScatteredPointBrush::BrushMove( const Point source, const Point target )
 
 	int size=pDoc->getSize();
 	int Ax,Ay;
-	glPointSize(1.0);//点のサイズを１ピクセルにする
+	glPointSize(3.0);//点のサイズを１ピクセルにする
 	glBegin( GL_POINTS );
 	SetColor( source );
 	for(int i=0;i<10;i++){

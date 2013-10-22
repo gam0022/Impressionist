@@ -21,6 +21,7 @@
 #include "circleBrush.h"
 #include "lineBrush.h"
 #include "scatteredPointBrush.h"
+#include "scatteredCircleBrush.h"
 
 
 #define DESTROY(p)	{  if ((p)!=NULL) {delete [] p; p=NULL; } }
@@ -45,6 +46,7 @@ ImpressionistDoc::ImpressionistDoc()
 	ImpBrush::c_pBrushes[BRUSH_CIRCLES]= new CircleBrush( this, "Circles" );
 	ImpBrush::c_pBrushes[BRUSH_LINES]= new LineBrush( this, "Lines" );
 	ImpBrush::c_pBrushes[BRUSH_SCATTEREDPOINTS]= new ScatteredPointBrush( this, "ScatteredPoints" );
+	ImpBrush::c_pBrushes[BRUSH_SCATTEREDCIRCLES]= new ScatteredCircleBrush( this, "ScatteredPoints" );
 	// Note: You should implement these 5 brushes.  They are set the same (PointBrush) for now
 
 	// make one of the brushes current
@@ -225,10 +227,40 @@ void ImpressionistDoc::applyFilter( const unsigned char* sourceBuffer,
 		double divisor, double offset )
 {
 	// This needs to be implemented for image filtering to work.
-	 double bufR,bufB,bufG;
-     int i,j,k,l;
+	double bufR,bufB,bufG;
+	int i,j,k,l;
 
-   
+	// ピクセルの値を初期化
+	for(i=0;i<srcBufferWidth;i++){
+		for(j=0;j<srcBufferHeight;j++){
+			destBuffer[3*(i + srcBufferWidth*j)]=0;
+			destBuffer[3*(i + srcBufferWidth*j)+1]=0;
+			destBuffer[3*(i + srcBufferWidth*j)+2]=0;
+		}
+	}
+
+	for(i=2;i<srcBufferWidth-2;i++){
+		for(j=2;j<srcBufferHeight-2;j++){
+			bufR=bufG=bufB=offset;
+			for(k=0;k<knlWidth;k++){
+				for(l=0;l<knlHeight;l++){
+					bufR+=filterKernel[k+knlWidth*l]*sourceBuffer[3*(i+k-2+srcBufferWidth*(j+l-2))] / divisor;
+					bufG+=filterKernel[k+knlWidth*l]*sourceBuffer[3*(i+k-2+srcBufferWidth*(j+l-2))+1] / divisor;
+					bufB+=filterKernel[k+knlWidth*l]*sourceBuffer[3*(i+k-2+srcBufferWidth*(j+l-2))+2] / divisor;
+				}
+			}
+	
+			if(bufR>255) bufR=255;
+			else if(bufR<0) bufR=0;
+			if(bufG>255) bufG=255;
+			else if(bufG<0) bufG=0;
+			if(bufB>255) bufB=255;
+			else if(bufB<0) bufB=0;
+			destBuffer[3*(i+srcBufferWidth*j)]= (unsigned char) bufR;
+			destBuffer[3*(i+srcBufferWidth*j)+1]= (unsigned char) bufG;
+			destBuffer[3*(i+srcBufferWidth*j)+2]= (unsigned char) bufB;
+		}
+	}
 }
 
 

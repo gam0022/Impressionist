@@ -406,6 +406,7 @@ Fl_Menu_Item ImpressionistUI::menuitems[] = {
 	{ "&Save Image...",	FL_ALT + 's', (Fl_Callback *)ImpressionistUI::cb_save_image },
 	{ "&Brushes...",	FL_ALT + 'b', (Fl_Callback *)ImpressionistUI::cb_brushes },
 	{ "&Copy Original Image to Canvas", FL_CTRL + 'v', (Fl_Callback *)ImpressionistUI::cb_copy_image_to_canvas },
+	{ "&Filter Kernel...", FL_CTRL + 'f', (Fl_Callback *)ImpressionistUI::cb_filter_kernel}, 
 	{ "&Clear Canvas", FL_ALT + 'c', (Fl_Callback *)ImpressionistUI::cb_clear_canvas, 0, FL_MENU_DIVIDER },
 	//Filter Kernelé¿èK
 	
@@ -426,6 +427,7 @@ Fl_Menu_Item ImpressionistUI::brushTypeMenu[NUM_BRUSH_TYPE+1] = {
   {"Circles",	FL_ALT+'c', (Fl_Callback *)ImpressionistUI::cb_brushChoice, (void *)BRUSH_CIRCLES},
   {"Lines",		FL_ALT+'l', (Fl_Callback *)ImpressionistUI::cb_brushChoice, (void *)BRUSH_LINES},
   {"ScateredPoints",		FL_ALT+'s', (Fl_Callback *)ImpressionistUI::cb_brushChoice, (void *)BRUSH_SCATTEREDPOINTS},
+  {"ScateredCircles",		FL_ALT+'s', (Fl_Callback *)ImpressionistUI::cb_brushChoice, (void *)BRUSH_SCATTEREDCIRCLES},
   //ÉuÉâÉVí«â¡
   {0}
 };
